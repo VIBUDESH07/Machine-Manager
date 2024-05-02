@@ -81,7 +81,7 @@ const Header = () => {
         <li>Contact</li>
       </ul>
       <div className="register-login-btn">
-        <div className="list-of-languages" style={{ display: "flex" }}>
+        <div className="list-of-languages" style={{ display: "" }}>
           <ul>
             <li>English</li>
             <li>Tamil</li>
