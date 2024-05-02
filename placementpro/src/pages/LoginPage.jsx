@@ -1,6 +1,5 @@
-// LoginPage.jsx
-
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios for making HTTP requests
 import { useNavigate } from 'react-router-dom';
 import './LoginPage.css'; // Import CSS for styles
 
@@ -10,15 +9,30 @@ const LoginPage = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!username || !password) {
       setError('Please enter both username and password.');
       return;
     }
 
-    // Simulate login success for demonstration
-    localStorage.setItem('isLogin', 'true');
-    navigate('/dashboard');
+    try {
+      // Make a POST request to your Express backend
+      const response = await axios.post('/login', {
+        username,
+        password
+      });
+
+      // Assuming your backend responds with a success status
+      if (response.status === 200) {
+        // Simulate login success for demonstration
+        localStorage.setItem('isLogin', 'true');
+        navigate('/dashboard');
+      } else {
+        setError('Login failed. Please try again.');
+      }
+    } catch (error) {
+      setError('An error occurred while logging in. Please try again.');
+    }
   };
 
   return (
