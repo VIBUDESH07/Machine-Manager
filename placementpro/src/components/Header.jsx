@@ -81,18 +81,14 @@ const Header = () => {
         <li>Contact</li>
       </ul>
       <div className="register-login-btn">
-        <div className="list-of-languages" style={{ display: "none" }}>
+        <div className="list-of-languages" style={{ display: "flex" }}>
           <ul>
             <li>English</li>
             <li>Tamil</li>
             <li>Hindi</li>
           </ul>
         </div>
-        {/* <IoLanguage
-          style={{ display: "none" }}
-          className="language-icon"
-          onClick={() => handleLanguage()}
-        /> */}
+   
         <Link to="/login">
           <button>Login</button>
         </Link>

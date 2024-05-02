@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div class="footer">
-        <h2>Questions? Call 000-000-000</h2>
+        <h2>Questions? Call placement cell kongu</h2>
         <div class="row">
           <div class="col">
             <a href="#">FAQ</a>
