@@ -81,7 +81,7 @@ header .list-items {
 }
 
 .dashboard {
-  display: none;
+  display: block;
 }
 
 .register-login-btn .language-icon {

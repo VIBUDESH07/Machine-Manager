@@ -5,6 +5,10 @@ import './index.css';
 import Layout from './components/Layout';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
+import Dashboard from './pages/Dashboard';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -12,7 +16,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {index: true, element:<HomePage />}
+      {index: true, element:<HomePage />},
+      {path:'/dashboard', element:<Dashboard/>},
     ]
   }
 ])
