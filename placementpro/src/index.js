@@ -6,7 +6,8 @@ import Layout from './components/Layout';
 import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
+import Studentdashboard from './pages/Studentdashboard';
+
 
 
 
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {index: true, element:<HomePage />},
-      {path:'/dashboard', element:<Dashboard/>},
+      {path:'/dashboard',element:<Studentdashboard/>},
       {path:'/login',element:<LoginPage/>},
     ]
   }
