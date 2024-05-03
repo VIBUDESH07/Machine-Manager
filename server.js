@@ -1,16 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const PORT = process.env.PORT || 5000; // Choose any port you like
+const PORT = process.env.PORT || 5000;
 
-// Middleware to parse JSON bodies
 app.use(express.json());
+app.use(cors()); // Enable CORS
 
-// Route to handle login
-app.post('/login', (req, res) => {
+app.post('/lo', (req, res) => {
   const { username, password } = req.body;
-  
-  // Here you can implement your login logic
-  // For demonstration, let's just send a success response if the username and password are not empty
   if (username && password) {
     res.status(200).json({ message: 'Login successful' });
   } else {
@@ -18,7 +15,6 @@ app.post('/login', (req, res) => {
   }
 });
 
-// Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running`);
+  console.log(`Server is running on port ${PORT}`);
 });

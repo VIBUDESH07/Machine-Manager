@@ -10,33 +10,35 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const handleLogin = async () => {
+    console.log('Attempting login...');
     if (!username || !password) {
       setError('Please enter both username and password.');
       return;
     }
-
+  
     try {
-      // Make a POST request to your Express backend
-      const response = await axios.post('/login', {
+      const response = await axios.post('http://localhost:5000/lo', {
         username,
         password
       });
-
-      // Assuming your backend responds with a success status
+      
+      console.log('Response:', response);
+  
       if (response.status === 200) {
-        // Simulate login success for demonstration
         localStorage.setItem('isLogin', 'true');
         navigate('/dashboard');
       } else {
         setError('Login failed. Please try again.');
       }
     } catch (error) {
+      console.error('Error:', error);
       setError('An error occurred while logging in. Please try again.');
     }
   };
+  
 
   return (
-    <div className="login-container"> {/* Apply CSS class for styling */}
+    <div className="login-container">
       <h2 className="login-header">Login</h2>
       <form>
         <input
