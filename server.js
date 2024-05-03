@@ -8,7 +8,7 @@ app.use(cors()); // Enable CORS
 
 app.post('/lo', (req, res) => {
   const { username, password } = req.body;
-  if (username && password) {
+  if (username === 'admin' && password==='1234') {
     res.status(200).json({ message: 'Login successful' });
   } else {
     res.status(400).json({ message: 'Username and password are required' });
