@@ -10,19 +10,18 @@ import Studentdashboard from './pages/Studentdashboard';
 
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      {index: true, element:<HomePage />},
-      {path:'/dashboard',element:<Studentdashboard/>},
-      {path:'/login',element:<LoginPage/>},
+      { index: true, element: <HomePage /> },
+      {path: '/dashboard',element:<Studentdashboard/>}, // Corrected path for dashboard route
+      { path: '/login', element: <LoginPage /> },
     ]
   }
-])
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

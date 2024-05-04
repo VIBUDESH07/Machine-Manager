@@ -28,19 +28,14 @@ const LoginPage = () => {
   
       if (response.data.message === 'Login successful') {
         localStorage.setItem('isLogin', 'true');
-        if(selectedOption==='Student')
-          {
-        navigate('/dashboard');
-          }
-        else if(selectedOption==='Admin')
-          {
-            navigate('/admin');
-
-          }
-          else
-          {
-            navigate('/faculty');
-          }
+        if(selectedOption==='Student') {
+          localStorage.setItem('studentDetails', JSON.stringify(response.data.student)); // Store student details in localStorage
+          navigate(`/dashboard`);
+        } else if(selectedOption==='Admin') {
+          navigate('/admin');
+        } else {
+          navigate('/faculty');
+        }
       } else {
         setError('Login failed. Please try again.');
       }
@@ -56,7 +51,6 @@ const LoginPage = () => {
       <form>
         <div>
           <select
-            
             value={selectedOption}
             onChange={(e) => setSelectedOption(e.target.value)}
           >

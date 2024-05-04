@@ -9,14 +9,13 @@ const Header = () => {
   const [isBar, setIsBar] = useState(false);
 
   useEffect(() => {
-    // Set initial isLogin state to false if not already set in localStorage
     if (!localStorage.getItem("isLogin")) {
       localStorage.setItem("isLogin", "false");
     }
 
     const storedLoginState = localStorage.getItem("isLogin");
     if (storedLoginState === "true") {
-      // Update UI based on login state
+      
       $(".dashboard").css({ display: "block" });
       $(".register-login-btn button").css({ display: "none" });
       $(".register-login-btn .logout-btn").css({ display: "block" });
@@ -49,15 +48,17 @@ const Header = () => {
     const confirmation = window.confirm(
       "Are you sure you want to Logout your Account?"
     );
-
+  
     if (confirmation) {
       localStorage.removeItem("isLogin");
       localStorage.removeItem("count");
+      localStorage.removeItem("studentDetails"); // Remove student details
+      
       navigate("/");
       window.location.reload();
     }
   };
-
+  
   return (
     <header>
       <div className="left-items">
