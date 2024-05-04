@@ -28,12 +28,15 @@
     margin-bottom: 20px;
   }
   
-  input {
+  select,input {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+  }
+  select{
+    background-color: white;
   }
   
   .error-message {
