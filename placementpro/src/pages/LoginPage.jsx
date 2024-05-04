@@ -24,15 +24,15 @@ const LoginPage = () => {
       
       console.log('Response:', response);
   
-      if (response.status === 200) {
+      if (response.data.message === 'Login successful') {
         localStorage.setItem('isLogin', 'true');
         navigate('/dashboard');
       } else {
         setError('Login failed. Please try again.');
       }
+      
     } catch (error) {
-      console.error('Error:', error);
-      setError('An error occurred while logging in. Please try again.');
+      setError('Login failed');
     }
   };
   

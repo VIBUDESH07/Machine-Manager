@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import logo from "../components/assets/kec-logo.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-/* import { HiBars3 } from "react-icons/hi2"; */
 import $ from "jquery";
-/* import { MdClose } from "react-icons/md";
-import { IoLanguage } from "react-icons/io5"; */
 
 const Header = () => {
-  /* localStorage.removeItem('isLogin'); */
   const navigate = useNavigate();
   const location = useLocation();
+  const [isBar, setIsBar] = useState(false);
+
   useEffect(() => {
+    // Set initial isLogin state to false if not already set in localStorage
+    if (!localStorage.getItem("isLogin")) {
+      localStorage.setItem("isLogin", "false");
+    }
+
     const storedLoginState = localStorage.getItem("isLogin");
     if (storedLoginState === "true") {
+      // Update UI based on login state
       $(".dashboard").css({ display: "block" });
       $(".register-login-btn button").css({ display: "none" });
       $(".register-login-btn .logout-btn").css({ display: "block" });
@@ -20,26 +24,21 @@ const Header = () => {
       const allowedRoutes = ["/login", "/register"];
 
       if (allowedRoutes.includes(currentPath)) {
-        window.location.href = "/error";
+        navigate("/error");
       }
     } else {
       const currentPath = location.pathname;
       const allowedRoutes = ["/login", "/register", "/"];
 
       if (!allowedRoutes.includes(currentPath)) {
-        window.location.href = "/error";
+        navigate("/error");
       }
     }
-  }, [location]);
-  const [isBar, setIsBar] = useState(false);
+  }, [location, navigate]);
+
   const handleList = () => {
-    if (isBar === true) {
-      setIsBar(false);
-      $(".list-items-container").css({ display: "none" });
-    } else {
-      setIsBar(true);
-      $(".list-items-container").css({ display: "block" });
-    }
+    setIsBar(!isBar);
+    $(".list-items-container").toggle();
   };
 
   const handleLanguage = () => {
@@ -62,11 +61,6 @@ const Header = () => {
   return (
     <header>
       <div className="left-items">
-        {/* {isBar ? (
-          <MdClose className="bar-icon" onClick={() => handleList()} />
-        ) : (
-          <HiBars3 className="bar-icon" onClick={() => handleList()} />
-        )} */}
         <img src={logo} alt="logo" className="logo" />
       </div>
       <ul className="list-items">
