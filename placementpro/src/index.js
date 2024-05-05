@@ -7,6 +7,7 @@ import ErrorPage from './pages/ErrorPage';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import Studentdashboard from './pages/Studentdashboard';
+import Courses from './pages/Courses';
 
 
 
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       {path: '/dashboard',element:<Studentdashboard/>}, // Corrected path for dashboard route
       { path: '/login', element: <LoginPage /> },
+      {path:'/course', element:<Courses/>}
     ]
   }
 ]);

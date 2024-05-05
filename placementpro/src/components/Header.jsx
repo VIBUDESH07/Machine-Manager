@@ -52,7 +52,7 @@ const Header = () => {
     if (confirmation) {
       localStorage.removeItem("isLogin");
       localStorage.removeItem("count");
-      localStorage.removeItem("studentDetails"); // Remove student details
+     // Remove student details
       
       navigate("/");
       window.location.reload();
@@ -76,7 +76,7 @@ const Header = () => {
         <li>Contact</li>
       </ul>
       <div className="register-login-btn">
-        <div className="list-of-languages" style={{ display: "block" }}>
+        <div className="list-of-languages" style={{ display: "none" }}>
           <ul>
             <li>English</li>
             <li>Tamil</li>

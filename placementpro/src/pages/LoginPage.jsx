@@ -8,6 +8,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [selectedOption, setSelectedOption] = useState('admin'); // State for selected option
   const [error, setError] = useState('');
+  const [studentDetails, setStudentDetails] = useState(null); // State for student details
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -29,8 +30,9 @@ const LoginPage = () => {
       if (response.data.message === 'Login successful') {
         localStorage.setItem('isLogin', 'true');
         if(selectedOption==='Student') {
+          setStudentDetails(response.data.student); // Set student details state
           localStorage.setItem('studentDetails', JSON.stringify(response.data.student)); // Store student details in localStorage
-          navigate(`/dashboard`);
+          console.log(studentDetails)
         } else if(selectedOption==='Admin') {
           navigate('/admin');
         } else {

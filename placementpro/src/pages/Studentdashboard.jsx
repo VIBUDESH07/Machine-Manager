@@ -6,20 +6,6 @@ const Studentdashboard = () => {
   const [studentDetails, setStudentDetails] = useState(null);
   const [imageSrc, setImageSrc] = useState(null);
 
-  // Effect to retrieve student details from localStorage when the component mounts
-  useEffect(() => {
-    const storedStudentDetails = localStorage.getItem('studentDetails');
-    if (storedStudentDetails) {
-      const parsedStudentDetails = JSON.parse(storedStudentDetails);
-      setStudentDetails(parsedStudentDetails);
-      console.log(parsedStudentDetails.image_data)
-      if (parsedStudentDetails.image_data) {
-        setImageSrc(getImageSource(parsedStudentDetails.image_data));
-        console.log(imageSrc)
-      }
-    }
-  }, []);
-
   // Function to convert ArrayBuffer to base64
   const getImageSource = (imageData) => {
     const buffer = new Uint8Array(imageData.data);
@@ -30,27 +16,36 @@ const Studentdashboard = () => {
     return `data:image/png;base64,${window.btoa(binary)}`;
   };
 
+  // Effect to retrieve student details from localStorage when the component mounts
+  useEffect(() => {
+    const storedStudentDetails = localStorage.getItem('studentDetails');
+    if (storedStudentDetails) {
+      const parsedStudentDetails = JSON.parse(storedStudentDetails);
+      setStudentDetails(parsedStudentDetails);
+      console.log(storedStudentDetails)
+      if (parsedStudentDetails.image_data) {
+        setImageSrc(getImageSource(parsedStudentDetails.image_data));
+        console.log(imageSrc)
+      }
+    }
+  }, []);
+  if (!studentDetails) {
+    return <div>Loading...</div>; // Render a loading indicator if studentDetails is null
+  }
+
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '640px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '640px',paddingTop:'20px'}}>
         {/* Place the heading */}
         <div>
           <h1 style={{ textAlign: 'center', color: 'blue' }}>Student Dashboard</h1>
         </div>
 
-        {/* Render student details */}
-        {studentDetails && (
-          <div>
-            <p>Name: {studentDetails.name}</p>
-            <p>Email: {studentDetails.student_mail}</p>
-            {/* Display the image */}
-            {imageSrc && <img src={imageSrc} alt="Student" style={{ width: '100px' }} />}
-            {/* Add more details as needed */}
-          </div>
-        )}
+       
       
         {/* Place the image on the right */}
-        <img src='' alt='logo' style={{ width: '100px', marginLeft: '400px' }} />
+        <img src={imageSrc} alt='logo' style={{ width: '50px', marginLeft: '400px' ,borderRadius:'70%'}} />
+        <h5 style={{paddingLeft:'10px'}}>{studentDetails.name}</h5>
       </div>
       <Stusidebar />
     </div>

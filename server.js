@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
-const mysql = require('mysql2'); // Import mysql2
+const mysql = require('mysql2');
 const app = express();
 const PORT = process.env.PORT || 5000;
-let globaluser='';
+
 // Database connection configuration
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -20,32 +20,66 @@ connection.connect(err => {
   }
   console.log('Connected to database as id', connection.threadId);
 });
+// Custom CORS middleware
+const allowCrossDomain = (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Update with your React app's URL
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
 
-app.use(express.json());
-app.use(cors());
+  // Allow preflight requests to continue
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+  } else {
+    next();
+  }
+};
 
-app.post('/lo', (req, res) => {
- 
+// Use custom CORS middleware
+app.use(allowCrossDomain);
 
-  connection.query('SELECT * FROM students ',(error, results, fields) => {
-   
+// Login endpoint
+app.post('/login', (req, res) => {
+  const { username, password, role } = req.body;
+
+  // Query the database to validate the credentials
+  connection.query('SELECT * FROM students WHERE student_mail = ? AND student_pass = ? AND role = ?', [username, password, role], (error, results, fields) => {
+    if (error) {
+      console.error('Error querying database:', error);
+      res.status(500).json({ message: 'Internal server error' });
+      return;
+    }
 
     if (results.length > 0) {
       const userData = results[0];
-      if (userData.student_pass) {
-        // Send student details along with the success message
-        res.status(200).json({ message: 'Login successful', student: userData });
-      } else {
-        res.status(400).json({ message: 'Invalid username or password' });
-      }
+      res.status(200).json({ message: 'Login successful', student: userData });
     } else {
-      res.status(400).json({ message: 'Username not found' });
+      res.status(401).json({ message: 'Invalid credentials' });
     }
   });
 });
 
+// Get student data endpoint
+app.get('/student/:id', (req, res) => {
+  const studentId = req.params.id;
 
+  // Query the database to fetch student data by ID
+  connection.query('SELECT * FROM students WHERE student_id = ?', [studentId], (error, results, fields) => {
+    if (error) {
+      console.error('Error querying database:', error);
+      res.status(500).json({ message: 'Internal server error' });
+      return;
+    }
 
+    if (results.length > 0) {
+      const studentData = results[0];
+      res.status(200).json(studentData);
+    } else {
+      res.status(404).json({ message: 'Student not found' });
+    }
+  });
+});
+
+// Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

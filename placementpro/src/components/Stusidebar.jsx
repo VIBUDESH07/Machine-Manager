@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faFlask, faLaptop } from '@fortawesome/free-solid-svg-icons'; // Import the desired icons
+import { faBook, faFlask, faIdBadge, faLaptop } from '@fortawesome/free-solid-svg-icons'; // Import the desired icons
 import './Stuside.css';
 
 const Stusidebar = () => {
@@ -21,6 +21,11 @@ const Stusidebar = () => {
         <Link to='/online-platforms'>
           <li>
             <FontAwesomeIcon icon={faLaptop} /> Online Platforms
+          </li>
+        </Link>
+        <Link to='/mock-interview'>
+          <li>
+            <FontAwesomeIcon icon={faIdBadge}/>Mock-Interview
           </li>
         </Link>
       </ul>
