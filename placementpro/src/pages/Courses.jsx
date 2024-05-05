@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Stusidebar from '../components/Stusidebar';
 import axios from 'axios';
-
+import '../pages/Courses.css';
 const Courses = () => {
     const [studentDetails, setStudentDetails] = useState(null);
 
@@ -26,9 +26,9 @@ const Courses = () => {
                 <div>
                     <h2>Courses</h2>
                 </div>
-                <div style={{ width: '100%', maxWidth: '300px', border: '15px solid green', padding: '50px', margin: '15px' }}>
+                <div className='box'>
                     {/* Make sure studentDetails is not null before accessing its properties */}
-                    {studentDetails && <h2>Hello Mr. {studentDetails.name}</h2>}
+                    {studentDetails && <h2 >Hello Mr. {studentDetails.name}, This is the COURSES assigned for you . Kindly Update for Placement</h2>}
                 </div>
             </div>
             

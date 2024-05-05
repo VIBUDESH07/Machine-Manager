@@ -1,0 +1,7 @@
+.box{
+    display:flex;
+    border: 2px;
+    padding: 10px;
+    width:100%;
+    background-color: aqua;
+}
