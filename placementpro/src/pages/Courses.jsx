@@ -3,17 +3,14 @@ import Stusidebar from '../components/Stusidebar';
 import axios from 'axios';
 
 const Courses = () => {
-    const [courses, setCourses] = useState([]); // State to store courses data
+    // State to store courses data
 
     useEffect(() => {
         const fetchStudentData = async () => {
             try {
                 const studentId = JSON.parse(localStorage.getItem('studentDetails')).student_id;
-                console.log(studentId)
-                const response = await axios.get(`https://localhost:5000/student/${studentId}`); // Replace 'YOUR_API_ENDPOINT' with your actual API endpoint
-                
-                // Update the state with the fetched data
-                setCourses(response.data);
+                const response = await axios.get(`http://localhost:5000/student/${studentId}`); 
+               
             } catch (error) {
                 console.error('Error fetching student data:', error);
             }
@@ -30,9 +27,7 @@ const Courses = () => {
                 {/* Render the fetched courses data */}
                 <h2>Courses</h2>
                 <ul>
-                    {courses.map(course => (
-                        <li key={course.id}>{course.name}</li> // Adjust the property names based on your API response
-                    ))}
+                   
                 </ul>
             </div>
             <Stusidebar />

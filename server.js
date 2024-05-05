@@ -7,6 +7,9 @@ const PORT = process.env.PORT || 5000;
 // Middleware to parse JSON bodies
 app.use(express.json());
 
+// Use the cors middleware to enable CORS
+app.use(cors());
+
 // Database connection configuration
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -23,23 +26,6 @@ connection.connect(err => {
   }
   console.log('Connected to database as id', connection.threadId);
 });
-
-// Custom CORS middleware
-const allowCrossDomain = (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Update with your React app's URL
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-
-  // Allow preflight requests to continue
-  if (req.method === 'OPTIONS') {
-    res.sendStatus(200);
-  } else {
-    next();
-  }
-};
-
-// Use custom CORS middleware
-app.use(allowCrossDomain);
 
 // Login endpoint
 app.post('/lo', (req, res) => {

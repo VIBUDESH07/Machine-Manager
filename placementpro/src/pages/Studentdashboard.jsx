@@ -22,10 +22,10 @@ const Studentdashboard = () => {
     if (storedStudentDetails) {
       const parsedStudentDetails = JSON.parse(storedStudentDetails);
       setStudentDetails(parsedStudentDetails);
-      console.log(storedStudentDetails)
+      
       if (parsedStudentDetails.image_data) {
         setImageSrc(getImageSource(parsedStudentDetails.image_data));
-        console.log(imageSrc)
+       
       }
     }
   }, []);
