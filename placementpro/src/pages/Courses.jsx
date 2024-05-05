@@ -20,21 +20,16 @@ const Courses = () => {
     }, []);
 
     return (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 3fr' }}>
-            {/* Left column */}
-            <div style={{ backgroundColor: 'lightblue',height:'200px' ,padding: '20px' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
+        <div style={{ display: 'flex' }}>
+            <Stusidebar />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', flex: 1 }}>
+                <div>
                     <h2>Courses</h2>
                 </div>
-                
-            </div>
-            {/* Right column */}
-            <div style={{ backgroundColor: 'greenyellow', padding: '20px' }}>
-                {/* Make sure studentDetails is not null before accessing its properties */}
-                {studentDetails && <h2>Hello Mr. {studentDetails.name}</h2>}
-            </div>
-            <div>
-                Hello
+                <div style={{ width: '100%', maxWidth: '300px', border: '15px solid green', padding: '50px', margin: '15px' }}>
+                    {/* Make sure studentDetails is not null before accessing its properties */}
+                    {studentDetails && <h2>Hello Mr. {studentDetails.name}</h2>}
+                </div>
             </div>
             
         </div>
