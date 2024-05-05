@@ -4,6 +4,9 @@ const mysql = require('mysql2');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Database connection configuration
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -20,6 +23,7 @@ connection.connect(err => {
   }
   console.log('Connected to database as id', connection.threadId);
 });
+
 // Custom CORS middleware
 const allowCrossDomain = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // Update with your React app's URL
@@ -38,22 +42,34 @@ const allowCrossDomain = (req, res, next) => {
 app.use(allowCrossDomain);
 
 // Login endpoint
-app.post('/login', (req, res) => {
-  const { username, password, role } = req.body;
+app.post('/lo', (req, res) => {
+  const { username, password } = req.body; // Destructure username and password from req.body
 
-  // Query the database to validate the credentials
-  connection.query('SELECT * FROM students WHERE student_mail = ? AND student_pass = ? AND role = ?', [username, password, role], (error, results, fields) => {
+  // Check if username and password are provided
+  if (!username || !password) {
+    return res.status(400).json({ message: 'Username or password is missing in the request body' });
+  }
+
+  // Query the database to retrieve user data based on the provided username
+  connection.query('SELECT * FROM students WHERE student_mail = ?', [username], (error, results, fields) => {
     if (error) {
       console.error('Error querying database:', error);
-      res.status(500).json({ message: 'Internal server error' });
-      return;
+      return res.status(500).json({ message: 'Internal server error' });
     }
 
     if (results.length > 0) {
       const userData = results[0];
-      res.status(200).json({ message: 'Login successful', student: userData });
+      const storedPassword = userData.student_pass;
+
+      // Compare the provided password with the stored password
+      if (password === storedPassword) {
+        console.log('SUccess');
+        return res.status(200).json({ message: 'Login successful', student: userData });
+      } else {
+        return res.status(401).json({ message: 'Invalid credentials' });
+      }
     } else {
-      res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'Invalid credentials' });
     }
   });
 });

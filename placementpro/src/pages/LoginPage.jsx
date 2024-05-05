@@ -21,8 +21,7 @@ const LoginPage = () => {
     try {
       const response = await axios.post('http://localhost:5000/lo', {
         username,
-        password,
-        role: selectedOption // Include selected option in the request body
+        password,// Include selected option in the request body
       });
       
       console.log('Response:', response);
@@ -33,6 +32,7 @@ const LoginPage = () => {
           setStudentDetails(response.data.student); // Set student details state
           localStorage.setItem('studentDetails', JSON.stringify(response.data.student)); // Store student details in localStorage
           console.log(studentDetails)
+          navigate('/dashboard');
         } else if(selectedOption==='Admin') {
           navigate('/admin');
         } else {
