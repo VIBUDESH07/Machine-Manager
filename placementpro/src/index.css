@@ -210,7 +210,7 @@ header .list-items {
 .sidebar-container {
   width: 260px;
   display: block;
-  height: 100vh;
+  height: 85vh;
   padding: 0 22px;
   transform: translateX(0%);
   transition: cubic-bezier(0.215, 0.610, 0.355, 1) 0.4s;
@@ -219,6 +219,8 @@ header .list-items {
   overflow-y: scroll;
   background: var(--color-bg);
   border-right: 1px solid #b4b3b3;
+  position: sticky;
+  top: 5rem;
 }
 
 .sidebar-container ul li {

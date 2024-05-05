@@ -4,6 +4,7 @@ import zogo from "../components/assets/zogo_logo.png"
 import google from "../components/assets/google_logo.png";
 import amazon from "../components/assets/amazon_logo.png";
 import flipkart from "../components/assets/flipkart_logo.png"
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   return (
@@ -56,6 +57,7 @@ const HomePage = () => {
           <p>This is an example company providing innovative solutions in the field of IT and software development.</p>
         </div>
       </div>
+      <Footer />
     </div>
     </div>
   )
