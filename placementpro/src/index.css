@@ -349,7 +349,8 @@ hr {
   margin-bottom: 10px;
 }
 .footer .row{
-  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
   padding: 10px 0;
 }
 .footer .language-btn{
