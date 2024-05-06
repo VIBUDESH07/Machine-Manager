@@ -22,7 +22,7 @@ const Courses = () => {
     return (
         <div style={{ display: 'flex' }}>
             <Stusidebar />
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', flex: 1 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', flex: 1 ,padding:'10px'}}>
                 <div>
                     <h2>Courses</h2>
                 </div>

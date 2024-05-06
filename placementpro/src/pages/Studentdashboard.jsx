@@ -35,17 +35,18 @@ const Studentdashboard = () => {
 
   return (
     <div>
-      <div style={{ display: 'flex', alignItems: 'center', paddingLeft: '640px',paddingTop:'20px'}}>
+      <div>
         {/* Place the heading */}
         <div>
-          <h1 style={{ textAlign: 'center', color: 'blue' }}>Student Dashboard</h1>
+          <h1>Student Dashboard</h1>
         </div>
 
        
-      
+      <div>
         {/* Place the image on the right */}
-        <img src={imageSrc} alt='logo' style={{ width: '50px', marginLeft: '400px' ,borderRadius:'70%'}} />
+        <img src={imageSrc} alt='logo' style={{ width: '50px' ,borderRadius:'70%'}} />
         <h5 style={{paddingLeft:'10px'}}>{studentDetails.name}</h5>
+      </div>
       </div>
       <Stusidebar />
     </div>
