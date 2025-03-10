@@ -18,7 +18,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
-      {path: '/dashboard',element:<Studentdashboard/>}, // Corrected path for dashboard route
+      {path: '/dashboard',element:<Studentdashboard/>}, 
       { path: '/login', element: <LoginPage /> },
       {path:'/course', element:<Courses/>}
     ]
