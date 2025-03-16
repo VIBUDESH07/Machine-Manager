@@ -7,6 +7,7 @@ const schedule = require('node-schedule');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const mongoURI = process.env.MONGO_URI;
+console.log(mongoURI)
 app.use(bodyParser.json());
 app.use(cors());
 

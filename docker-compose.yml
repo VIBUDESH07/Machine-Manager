@@ -11,9 +11,9 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
 
-  backend:  # Removed extra space before "backend"
+  backend:  
     build: ./backend
-    container_name: backend
+    container_name: New
     ports:
       - "5000:5000"
     depends_on:
@@ -26,7 +26,7 @@ services:
 
   frontend:
     build: ./frontend/web_tech
-    container_name: frontend
+    container_name: New1
     ports:
       - "3000:3000"
     depends_on:
